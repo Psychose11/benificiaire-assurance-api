@@ -1,0 +1,30 @@
+[Employé]
+    |
+    | (1) Fait une demande de mise à jour (Formulaire / Appel)
+    ↓
+[API: POST /api/beneficiaires]
+    |
+    | => Crée un nouveau bénéficiaire (nom + lien de parenté + employé)
+    ↓
+[API: POST /api/demandes]
+    |
+    | => Crée une demande de mise à jour (statut = "En attente")
+    ↓
+[RH]
+    |
+    | (2) Consulte et valide la demande
+    ↓
+[API: PUT /api/demandes/valider/:idDemande]
+    |
+    | => Met à jour le statut de la demande à "Validée"
+    ↓
+[API: PUT /api/demandes/notifier/:idDemande]
+    |
+    | => Envoie une notification à la compagnie d'assurance
+    | => Met à jour le statut de la demande à "Notifiée"
+    ↓
+[Système]
+    |
+    | (3) Notification envoyée au RH et à l'Employé (Email ou Message)
+    ↓
+[Fin du process ✔]
