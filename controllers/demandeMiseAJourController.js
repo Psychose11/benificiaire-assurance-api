@@ -38,3 +38,13 @@ exports.notifierCompagnie = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+exports.getAllRequest = async (req, res) => {
+  try {
+    const request = await DemandeMiseAJourService.getAllRequest();
+    res.status(200).json(request);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

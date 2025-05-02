@@ -25,6 +25,11 @@ class DemandeMiseAJourService {
     );
     return result.affectedRows > 0;
   }
+
+  static async getAllRequest() {
+    const [rows] = await pool.query('SELECT * FROM demandemiseajour');
+    return rows.map(row => new DemandeMiseAJour(row.idDemande,row.idEmploye, row.idRH, row.idBeneficiaire, row.statut,row.dateDemande));
+  }
 }
 
 module.exports = DemandeMiseAJourService;
